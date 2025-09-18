@@ -1,3 +1,54 @@
-<div class="container">
-  <h1>{{ title }}</h1>
+<header class="topbar elevated" role="banner" aria-label="App header">
+  <div class="topbar-inner">
+    <button class="menu-button btn btn-ghost" (click)="toggleSidebar()" aria-label="Toggle navigation">
+      <span aria-hidden="true">☰</span>
+    </button>
+    <h1 class="app-title">{{ title }}</h1>
+    <div class="topbar-actions">
+      <a class="btn btn-ghost" routerLink="/notes" aria-label="All notes">All Notes</a>
+      <a class="btn btn-ghost" routerLink="/tags" aria-label="Tags">Tags</a>
+      <a class="btn btn-primary" routerLink="/new" aria-label="Create new note">New Note</a>
+    </div>
+  </div>
+</header>
+
+<div class="app-layout full-height" role="presentation">
+  <nav class="sidebar surface" [class.collapsed]="sidebarCollapsed()" aria-label="Folders and tags navigation">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🗒️</div>
+        <div class="brand-text">
+          <strong>Notes</strong>
+          <span class="small text-muted">Ocean Professional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Folders</div>
+      <ul class="nav-list" role="list">
+        <li><a routerLink="/notes" routerLinkActive="active" aria-current="page">All</a></li>
+        <li><a routerLink="/f/favorites" routerLinkActive="active">Favorites <span class="chip">★</span></a></li>
+        <li><a routerLink="/f/archive" routerLinkActive="active">Archive</a></li>
+        <li><a routerLink="/f/trash" routerLinkActive="active">Trash</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Tags</div>
+      <div class="tags">
+        <a class="chip" routerLink="/t/work">Work</a>
+        <a class="chip" routerLink="/t/personal">Personal</a>
+        <a class="chip badge-amber" routerLink="/t/ideas">Ideas</a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer small text-muted">
+      <span>v1.0.0</span>
+    </div>
+  </nav>
+
+  <main class="main-content" role="main">
+    <router-outlet></router-outlet>
+  </main>
 </div>
